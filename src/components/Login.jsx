@@ -1,12 +1,24 @@
-import { useState } from "react";
+import { useRef, useState } from "react";
 import { BACKGROUND_IMAGE_URL } from "../utils/constants";
 import Header from "./Header.jsx";
+import { checkValidData } from "../utils/validate.js";
 
 const Login = () => {
   const [isSignIn, setIsSignIn] = useState(true);
 
+  const email = useRef(null);
+  const password = useRef(null);
+
   const handleToggle = () => {
     setIsSignIn(!isSignIn);
+  };
+
+  const handleButtonClick = (e) => {
+    e.preventDefault();
+    const validationMessage = checkValidData(email.current.value, password.current.value);
+    console.log(validationMessage);
+    console.log("email: " + email.current.value);
+    console.log("password: " + password.current.value);
   };
   return (
     <div className="relative min-h-auto">
@@ -33,18 +45,23 @@ const Login = () => {
           />
         )}
         <input
+          ref={email}
           type="text"
           placeholder="Enter your email"
           className="w-full bg-[#333] text-white p-4 mb-4 rounded-md outline-none placeholder-gray-400 font-extralight font-serif"
         />
 
         <input
+          ref={password}
           type="password"
           placeholder="Enter the password"
           className="w-full bg-[#333] text-white p-4 rounded-md outline-none placeholder-gray-400 font-extralight font-serif"
         />
 
-        <button className="w-full bg-[#e50914] text-white p-3 rounded-md mt-6 font-mono font-light hover:bg-[#f40612] cursor-pointer ">
+        <button
+          onClick={handleButtonClick}
+          className="w-full bg-[#e50914] text-white p-3 rounded-md mt-6 font-mono font-light hover:bg-[#f40612] cursor-pointer "
+        >
           {isSignIn ? "Sign In" : "Sign Up"}
         </button>
 
