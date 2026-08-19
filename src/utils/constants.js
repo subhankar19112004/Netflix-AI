@@ -7,3 +7,7 @@ export const LOGO_URL =
 export const USER_URL =
     "https://occ-0-4994-3662.1.nflxso.net/dnm/api/v6/SO2HoVCx33X8phZh2pZZmQ4QgNY/AAAABQANYbcJrx_I7vSElpMJzY3TiSfAT6dALQ3EvcpZoojGcfZtqwO2TfSCYWpCD80b6z0Mou6hOaf6l2xCXs2w9XYgNC40k70.png?r=bd7";
   
+export const GITHUB_PROFILE_PHOTO_URL =
+    "https://avatars.githubusercontent.com/u/171590808?v=4";
+  
+    
