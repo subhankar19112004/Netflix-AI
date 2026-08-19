@@ -1,21 +1,29 @@
 import { useRef, useState } from "react";
-import { BACKGROUND_IMAGE_URL } from "../utils/constants";
+import {
+  BACKGROUND_IMAGE_URL,
+  GITHUB_PROFILE_PHOTO_URL,
+} from "../utils/constants";
 import Header from "./Header.jsx";
 import { checkValidData } from "../utils/validate.js";
 import {
   createUserWithEmailAndPassword,
   signInWithEmailAndPassword,
+  updateProfile,
 } from "firebase/auth";
 import { auth } from "../firebase/firebase.js";
 import { useNavigate } from "react-router";
+import { useDispatch } from "react-redux";
+import { addUser } from "../utils/redux/userSlice.js";
 
 const Login = () => {
   const [isSignIn, setIsSignIn] = useState(true);
   const [errorMessage, setErrorMessage] = useState(null);
   const navigate = useNavigate();
+  const dispatch = useDispatch();
 
   const email = useRef(null);
   const password = useRef(null);
+  const name = useRef(null);
 
   const handleToggle = () => {
     setIsSignIn(!isSignIn);
@@ -44,6 +52,26 @@ const Login = () => {
         .then((userCredential) => {
           // Signed up
           const user = userCredential.user;
+          updateProfile(user, {
+            displayName: name.current.value || "Unnamed User",
+            photoURL: GITHUB_PROFILE_PHOTO_URL,
+          })
+            .then(() => {
+              const { uid, email, displayName, photoURL } = auth.currentUser;
+
+              dispatch(
+                addUser({
+                  uid: uid,
+                  email: email,
+                  displayName: displayName,
+                  photoURL: photoURL,
+                }),
+              );
+            })
+            .catch((error) => {
+              console.error("Error updating profile:", error);
+              navigate("/error");
+            });
           console.log(user);
           navigate("/browse");
         })
@@ -95,6 +123,7 @@ const Login = () => {
         </p>
         {!isSignIn && (
           <input
+            ref={name}
             type="text"
             placeholder="Enter your name"
             className="w-full bg-[#333] text-white p-4 mb-4 rounded-md outline-none placeholder-gray-400 font-extralight font-serif"
