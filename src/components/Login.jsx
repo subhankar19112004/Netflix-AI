@@ -11,14 +11,12 @@ import {
   updateProfile,
 } from "firebase/auth";
 import { auth } from "../firebase/firebase.js";
-import { useNavigate } from "react-router";
 import { useDispatch } from "react-redux";
 import { addUser } from "../utils/redux/userSlice.js";
 
 const Login = () => {
   const [isSignIn, setIsSignIn] = useState(true);
   const [errorMessage, setErrorMessage] = useState(null);
-  const navigate = useNavigate();
   const dispatch = useDispatch();
 
   const email = useRef(null);
@@ -70,10 +68,8 @@ const Login = () => {
             })
             .catch((error) => {
               console.error("Error updating profile:", error);
-              navigate("/error");
             });
           console.log(user);
-          navigate("/browse");
         })
         .catch((error) => {
           const errorCode = error.code;
@@ -90,8 +86,6 @@ const Login = () => {
         .then((userCredential) => {
           // Signed in
           const user = userCredential.user;
-          console.log(user);
-          navigate("/browse");
         })
         .catch((error) => {
           const errorCode = error.code;
