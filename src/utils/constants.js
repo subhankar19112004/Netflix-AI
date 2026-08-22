@@ -18,3 +18,6 @@ export const API_OPTIONS = {
       "Bearer eyJhbGciOiJIUzI1NiJ9.eyJhdWQiOiI2Mzg0MDY4YjE5OTMzNTU4MzBmYjNiZjBhMTIwZjA4YiIsIm5iZiI6MTczMTQ5MTAwMS43NjgsInN1YiI6IjY3MzQ3NGI5Njc4ZDM4NTZhNzZiNTcwMSIsInNjb3BlcyI6WyJhcGlfcmVhZCJdLCJ2ZXJzaW9uIjoxfQ.b9N8lHgyuIoPcciENwxchCMpDfMtrEBv1H_bFMm_E80",
   },
 };
+
+export const API_URL =
+  "https://api.themoviedb.org/3/movie/now_playing?language=en-US&page=1";
