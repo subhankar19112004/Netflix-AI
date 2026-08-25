@@ -7,12 +7,21 @@ yarn-error.log*
 pnpm-debug.log*
 lerna-debug.log*
 
+# Dependencies
 node_modules
+
+# Build output
 dist
 dist-ssr
+
+# Local environment files
 *.local
+
+# Firebase
 firebase
-// Ignore the constants.js file in the src/utils directory
+
+# Project-specific files
+# Ignore constants.js inside src/utils
 src/utils/constants.js
 
 # Editor directories and files
@@ -25,4 +34,3 @@ src/utils/constants.js
 *.njsproj
 *.sln
 *.sw?
-
