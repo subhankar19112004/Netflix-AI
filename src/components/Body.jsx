@@ -2,6 +2,7 @@ import Browse from "./Browse";
 import Login from "./Login";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
 import Error from "./Error";
+import Loading from "./Loading";
 
 const Body = () => {
   const appRouter = createBrowserRouter([
@@ -16,6 +17,14 @@ const Body = () => {
     {
       path: "/error",
       element: <Error/>,
+    },
+    {
+      path: "/*",
+      element: <Error/>,
+    },
+    {
+      path: "/logi/iauigiegoiuaebgoiaegeohgeiourhgoiehoiearhhoaeje",
+      element: <Loading />,
     }
   ]);
 
