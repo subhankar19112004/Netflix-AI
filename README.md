@@ -6,6 +6,9 @@ Netflix-AI is a learning-focused project developed while following the **Namaste
 
 ---
 
+## Live Demo link
+  - [Netflix-AI](https://netflixai-d27af.web.app/)
+
 ## ✨ Features
 
 ### 🔐 Authentication
