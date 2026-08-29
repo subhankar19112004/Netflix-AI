@@ -1,5 +1,5 @@
 import { signOut } from "firebase/auth";
-import { useNavigate } from "react-router";
+import { Link, useNavigate } from "react-router";
 import { LOGO_URL, USER_URL } from "../utils/constants";
 import { auth } from "../firebase/firebase";
 import { useSelector } from "react-redux";
@@ -56,6 +56,12 @@ const Header = () => {
               alt="User"
               className="h-9 w-9 rounded-md object-cover sm:h-10 sm:w-10"
             />
+
+            <Link to="/gpt-search">
+              <button className="rounded-md bg-[#232b2e] px-3 py-2 text-sm font-medium text-amber-200 transition duration-200 hover:bg-[#191717] active:scale-95 sm:px-4">
+                GPT Search
+              </button>
+            </Link>
 
             <button
               onClick={handleSignOut}
