@@ -1,16 +1,18 @@
 import { signOut } from "firebase/auth";
-import { Link, useNavigate } from "react-router";
-import { LOGO_URL, USER_URL } from "../utils/constants";
+import { useNavigate } from "react-router";
+import { LOGO_URL, SUPPORTED_LANGUAGES, USER_URL } from "../utils/constants";
 import { auth } from "../firebase/firebase";
 import { useSelector } from "react-redux";
 import { useEffect } from "react";
 import { addUser, removeUser } from "../utils/redux/userSlice";
 import { useDispatch } from "react-redux";
 import { onAuthStateChanged } from "firebase/auth";
+import { toggleGptSearch } from "../utils/redux/gptSlice";
 
 const Header = () => {
   const navigate = useNavigate();
   const user = useSelector((store) => store.user);
+  const showGptSearch = useSelector((store) => store.gpt.showGptSearch);
   const dispatch = useDispatch();
 
   useEffect(() => {
@@ -38,6 +40,10 @@ const Header = () => {
     }
   };
 
+  const handleGptSearchClick = () => {
+    dispatch(toggleGptSearch());
+  };
+
   return (
     <header className="fixed top-0 left-0 right-0 z-50 h-20 bg-linear-to-b from-black/90 to-transparent">
       <div className="flex h-full items-center justify-between px-4 sm:px-8 md:px-12">
@@ -51,17 +57,34 @@ const Header = () => {
         {/* User Section */}
         {user && (
           <div className="flex items-center gap-3 sm:gap-4">
+            {showGptSearch && (
+              <select
+                defaultValue="en"
+                className=" cursor-pointer appearance-none rounded-md border border-white/20 bg-black/70 px-4 py-2 pr-9 text-sm font-medium tracking-wide text-white outline-none backdrop-blur- transition-all duration-3 hover:border-white/40 hover:bg-white/ focus:border-white/50 focus:ring-2 focus:ring-white/ active:scale-[0.98]"
+              >
+                {SUPPORTED_LANGUAGES.map((lang) => (
+                  <option
+                    key={lang.identifier}
+                    value={lang.identifier}
+                    className="bg-[#181818] text-white"
+                  >
+                    {lang.name}
+                  </option>
+                ))}
+              </select>
+            )}
             <img
               src={user.photoURL || USER_URL}
               alt="User"
               className="h-9 w-9 rounded-md object-cover sm:h-10 sm:w-10"
             />
 
-            <Link to="/gpt-search">
-              <button className="rounded-md bg-[#232b2e] px-3 py-2 text-sm font-medium text-amber-200 transition duration-200 hover:bg-[#191717] active:scale-95 sm:px-4">
-                GPT Search
-              </button>
-            </Link>
+            <button
+              onClick={handleGptSearchClick}
+              className="rounded-md bg-[#232b2e] px-3 py-2 text-sm font-medium text-amber-200 transition duration-200 hover:bg-[#191717] active:scale-95 sm:px-4"
+            >
+              GPT Search
+            </button>
 
             <button
               onClick={handleSignOut}
