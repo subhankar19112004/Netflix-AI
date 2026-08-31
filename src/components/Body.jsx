@@ -22,7 +22,7 @@ const Body = () => {
       path: "/*",
       element: <Error/>,
     },
-    {
+    {  
       path: "/logi/iauigiegoiuaebgoiaegeohgeiourhgoiehoiearhhoaeje",
       element: <Loading />,
     }
