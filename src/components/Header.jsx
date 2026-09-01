@@ -8,6 +8,7 @@ import { addUser, removeUser } from "../utils/redux/userSlice";
 import { useDispatch } from "react-redux";
 import { onAuthStateChanged } from "firebase/auth";
 import { toggleGptSearch } from "../utils/redux/gptSlice";
+import { changeLanguage } from "../utils/redux/configSlice";
 
 const Header = () => {
   const navigate = useNavigate();
@@ -44,6 +45,10 @@ const Header = () => {
     dispatch(toggleGptSearch());
   };
 
+  const handleLanguageChange = (e) => {
+    dispatch(changeLanguage(e.target.value));
+  }
+
   return (
     <header className="fixed top-0 left-0 right-0 z-50 h-20 bg-linear-to-b from-black/90 to-transparent">
       <div className="flex h-full items-center justify-between px-4 sm:px-8 md:px-12">
@@ -59,6 +64,7 @@ const Header = () => {
           <div className="flex items-center gap-3 sm:gap-4">
             {showGptSearch && (
               <select
+                onChange={handleLanguageChange}
                 defaultValue="en"
                 className=" cursor-pointer appearance-none rounded-md border border-white/20 bg-black/70 px-4 py-2 pr-9 text-sm font-medium tracking-wide text-white outline-none backdrop-blur- transition-all duration-3 hover:border-white/40 hover:bg-white/ focus:border-white/50 focus:ring-2 focus:ring-white/ active:scale-[0.98]"
               >
@@ -83,7 +89,7 @@ const Header = () => {
               onClick={handleGptSearchClick}
               className="rounded-md bg-[#232b2e] px-3 py-2 text-sm font-medium text-amber-200 transition duration-200 hover:bg-[#191717] active:scale-95 sm:px-4"
             >
-              GPT Search
+              {showGptSearch ? "Home" : "GPT Search"}
             </button>
 
             <button
