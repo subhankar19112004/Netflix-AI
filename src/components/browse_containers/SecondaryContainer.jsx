@@ -4,7 +4,6 @@ import Loading from "../Loading";
 
 const SecondaryContainer = () => {
   const movies = useSelector((store) => store.movies);
-  console.log(movies.nowPopularMovies);
   if (!movies.nowPlayingMovies) {
     return <Loading/>;
   }
