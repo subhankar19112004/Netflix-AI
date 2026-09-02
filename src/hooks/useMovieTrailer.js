@@ -17,13 +17,13 @@ const useMovieTrailer = (movieId) => {
       (video) => video.type === "Trailer",
     );
     let trailer = filetrTrailersData.length
-      ? filetrTrailersData[1]
+      ? filetrTrailersData[0]
       : json.results[0];
     dispatch(addTrailerVideo(trailer));
   };
 
   useEffect(() => {
-    getMovieVideo(movieId);
+    !trailerVideo && getMovieVideo(movieId);
   }, [movieId]);
 
   return trailerVideo;
