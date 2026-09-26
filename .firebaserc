@@ -1,5 +1,7 @@
 {
   "projects": {
-    "default": "netflixai-d27af"
-  }
+    "default": "netflicx-ai"
+  },
+  "targets": {},
+  "etags": {}
 }
