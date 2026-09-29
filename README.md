@@ -23,6 +23,7 @@ Netflix-AI is a learning-focused project developed while following the **Namaste
 
 ### 🏠 Netflix-Style Browse Experience
 
+
 - Netflix-inspired landing page
 - Hero/banner section
 - Movie backdrop images
@@ -41,6 +42,7 @@ Netflix-AI is a learning-focused project developed while following the **Namaste
 - Search for multiple movies at once
 - Recommendation-based discovery
 - AI-generated movie suggestions
+
 
 ### 🎥 Movie Experience
 
